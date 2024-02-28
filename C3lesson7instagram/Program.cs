@@ -253,7 +253,7 @@ while (true)
 
                     if (select2 == 1) //bu adminin edmeyidi
                     {
-                        /*
+                        
                         #region entering
                         while (true)
                         {
@@ -302,7 +302,7 @@ while (true)
                         }
                         }
                         #endregion
-*/
+
 
                         while (true)
                         {
