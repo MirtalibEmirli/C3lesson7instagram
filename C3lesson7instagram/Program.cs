@@ -1,9 +1,17 @@
 ﻿
 using C3lesson7instagram.Models;
 using System.Drawing;
+using Notfcs.nets;
+using Possts.nets;
+using  C3lesson7instagram.mainmodels;
+using C3lesson7instagram.admn;
+
+using System;
+using System.Net;
+using System.Net.Mail;
+
+
 //Guid randomguid = Guid.NewGuid();
-
-
 
 //logunde lazm olacaqq
 /*int  d = Convert.ToInt32(Console.ReadLine());
@@ -11,6 +19,8 @@ int  y = Convert.ToInt32(Console.ReadLine());
 int  m = Convert.ToInt32(Console.ReadLine());
 DateTime brthday = new DateTime(d,y,m);*/
 
+
+#region  fonss  
 string fonq = (@"               
           .:-==============--.          
         :+***+============++***:        
@@ -77,15 +87,46 @@ string[] menu2 = {
 
 string[] menuadmin = {
                    "\t\t\t\t[1] => Add Post",
-                   "\t\t\t\t[2] => Print Users",
+                   "\t\t\t\t[2] => Show Users",
                    "\t\t\t\t[3] => Delete Post",
                    "\t\t\t\t[4] => Exit"
 };
 
+#endregion
+
+#region datas 
+DateTime brd = DateTime.Now;
+Admin admin1 = new Admin("admin", "adminone", "admin@gmail.com", "admin4321", brd);
+Admin admin2 = new Admin("admin2", "admin2", "admin2@gmail.com", "admin123", brd);
+Admin admin3 = new Admin("admin3", "admin3", "admin3@gmail.com", "admin21", brd);
 
 
+
+DateTime brd1 = new DateTime(2005,07,04);
+DateTime brd2 = new DateTime(2008,09,07);
+DateTime brd3 = new DateTime(2003,06,03);
+DateTime brd4 = new DateTime(2004,11,13);
+User user1 = new User("Adil", "Pashayev", "mirtalibemirli498@gmail.com", "miri21", brd1);
+User user2 = new User("Mirtalib", "Emirli", "mirtalibemirli498@gmail.com", "miri321", brd2);
+User user3 = new User("Kamal", "Eliyev", "mirtalibemirli498@gmail.com", "miri421", brd3);
+User user4 = new User("Rail", "Agayevh", "mirtalibemirli498@gmail.com", "ril421", brd4);
+Databasee db1 = new Databasee();
+db1.adminss.Add(admin1);    
+db1.adminss.Add(admin2);    
+db1.adminss.Add(admin3);
+db1.users.Add(user1);
+db1.users.Add(user2);
+db1.users.Add(user3);
+db1.users.Add(user4);
+/*
+db1.showusers();
+
+Thread.Sleep(555555);*/
+#endregion
 while (true)
 {
+
+    #region gris
     Console.Clear();
 
     Console.ForegroundColor = ConsoleColor.Green;
@@ -135,6 +176,8 @@ while (true)
 
 
 
+    #endregion
+
 
     if (key.Key == ConsoleKey.Enter)
     {
@@ -143,7 +186,7 @@ while (true)
         {
             while (true)
             {
-
+                #region login
 
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -184,7 +227,6 @@ while (true)
                 }
 
 
-
                 ConsoleKeyInfo key2 = Console.ReadKey();
 
 
@@ -202,18 +244,70 @@ while (true)
 
                 }
 
+                #endregion
 
 
                 if (key2.Key == ConsoleKey.Enter) //user ve ya adminin secilen hssedi enter edmeyidi loginde
                 {
-                    if (select2 == 1) //bu userin edmeyidi
-                    {
 
+
+                    if (select2 == 1) //bu adminin edmeyidi
+                    {
+                        /*
+                        #region entering
+                        while (true)
+                        {
+                          
+                        try
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write("Gmail :");
+                            string gm = Console.ReadLine();
+
+                            Console.Write("Password :");
+                            string pw = Console.ReadLine();
+
+                            Console.ForegroundColor = ConsoleColor.White;
+
+
+                                if (gm == admin1.Mail || gm == admin2.Mail || gm == admin3.Mail)
+                                {
+                                    if(pw==admin1.Password|| pw == admin2.Password|| pw == admin3.Password)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+
+
+                                        throw new Exception("Wrong password ");
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+
+                                    throw new Exception("Wrong gmail ");
+                                    Console.ForegroundColor = ConsoleColor.White;
+
+                                }
+                            }
+                        catch ( Exception ex) 
+                        {
+                            Console.WriteLine(ex.Message);
+                            
+                        }
+                        }
+                        #endregion
+*/
 
                         while (true)
                         {
 
-
+                            #region menuadmin
                             Console.Clear();
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine(fon5);
@@ -290,13 +384,14 @@ while (true)
 
                               }
 
+                            #endregion
 
 
-
-                              //burda baslayr isleemler
+                            //burda baslayr isleemler
 
                             if (key3.Key == ConsoleKey.Enter)
                             {
+                                Console.Clear();
                                 if (select4 == 1)
                                 {
                                     Console.WriteLine(menuadmin[0]);
@@ -305,9 +400,16 @@ while (true)
                                 }
                                 if (select4 == 2)
                                 {
-                                    Console.WriteLine(menuadmin[1]);
-                                    Thread.Sleep(1000);
+                                    db1.showusers();
+                                    Console.WriteLine();    
+                                    Console.WriteLine();    
+                                    Console.WriteLine("Please enter Esc for returning");    
+                                    ConsoleKeyInfo k2 = Console.ReadKey(true);
 
+                                    if (k2.Key == ConsoleKey.Escape)
+                                    {
+                                        break;
+                                    }
                                 }
                                 if (select4 == 3)
                                 {
@@ -317,8 +419,8 @@ while (true)
                                 }
                                 if (select4 == 4)
                                 {
-                                                                        Console.WriteLine(menuadmin[3]);
-                                    Thread.Sleep(1000);
+
+                                    break;
                                 }
                             }
 
@@ -354,22 +456,122 @@ while (true)
 
 
 
-                //bu register hissesidi
 
-                else if (select == 2)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-
-                    Console.WriteLine(fon4);
-                    Console.ForegroundColor = ConsoleColor.White;
-
-                    Thread.Sleep(1000);
-                }
+               
 
 
 
             }
+        }
+
+
+        //bu register hissesidi
+
+        else if (select == 2)
+        {
+            try
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+
+                Console.WriteLine(fon4);
+                Console.ForegroundColor = ConsoleColor.White;
+
+                string name, surname, mail, password;
+                int day, mon, yr;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("enter name =>");
+                name = Console.ReadLine();
+                Console.WriteLine("enter surname =>");
+                surname = Console.ReadLine();
+
+                Console.WriteLine("enter mail =>");
+                mail = Console.ReadLine();
+
+                Console.WriteLine("enter password =>");
+                password = Console.ReadLine();
+
+                Console.WriteLine("enter day =>");
+                day = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("enter month =>");
+                mon = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("enter year =>");
+                yr = Convert.ToInt32(Console.ReadLine());
+
+                Console.ForegroundColor = ConsoleColor.White;
+                DateTime day2 = new DateTime(yr, mon, day);
+
+
+                User newuser = new User(name, surname, mail, password, day2);
+                db1.users.Add(newuser);
+                Console.ForegroundColor = ConsoleColor.Red;
+
+
+
+
+                string senderEmail = "mirtalibemirli498@gmail.com";
+                string senderPassword = "aytndmgzqcukvmds";
+
+                Console.Write("Enter your mail => ");
+                string recipientEmail = Console.ReadLine();
+
+                string smtpServer = "smtp.gmail.com";
+                int smtpPort = 587;
+               
+                using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
+                {
+                    smtpClient.EnableSsl = true;
+
+                    smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
+
+                    using (MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail))
+                    {
+                        mailMessage.Subject = "Registration";
+                       /* Guid newguid = Guid.NewGuid();
+                        string tst2 = newguid.ToString();
+                       bu uzun idi deye isledmedim size ezyet olacaq onu yazmaq
+                        */
+                        Random random = new Random();
+                        int msg = random.Next(0, 100);
+                        mailMessage.Body = $"{msg}";
+
+
+
+                        try
+                        {
+                            smtpClient.Send(mailMessage);
+                            Console.Write("Enter a code you accepted from Admin => ");
+                            int testcode = Convert.ToInt32(Console.ReadLine()) ;  
+                            if(testcode==msg)
+                            Console.WriteLine("You are registered sucsessfully.");
+                            else
+                            {
+                                Console.WriteLine("You don't registered sucsessfully.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Failed to send email. Error's message: {ex.Message}");
+                        }
+                    }
+                }
+
+
+
+                Thread.Sleep(1500);
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+            }
+            catch (Exception    ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                Thread.Sleep(3500);
+            }
+           
         }
     }
     }
