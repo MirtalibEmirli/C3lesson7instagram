@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Mail;
 using Possts.nets;
 using System.Data;
+using Notfcs.nets;
 /*using System.Drawing;
 using Notfcs.nets;
 using Possts.nets;
@@ -79,7 +80,8 @@ string[] menuadmin = {
                    "\t\t\t\t[2] => Show Users",
                    "\t\t\t\t[3] => Delete Post",
                    "\t\t\t\t[4] => Exit",
-                   "\t\t\t\t[5] => Show all posts"
+                   "\t\t\t\t[5] => Show all posts",
+                   "\t\t\t\t[6] => Notifilications"
 };
 
 #endregion
@@ -96,11 +98,12 @@ DateTime brd1 = new DateTime(2005, 07, 04);
 DateTime brd2 = new DateTime(2008, 09, 07);
 DateTime brd3 = new DateTime(2003, 06, 03);
 DateTime brd4 = new DateTime(2004, 11, 13);
-User user1 = new User("Adil", "Pashayev", "mirtalibemirli498@gmail.com", "miri21", brd1);
+User user1 = new User("Adil", "Pashayev", "mirtalibemirli498@gmail.com", "adil21", brd1);
 User user2 = new User("Mirtalib", "Emirli", "mirtalibemirli498@gmail.com", "miri321", brd2);
-User user3 = new User("Kamal", "Eliyev", "mirtalibemirli498@gmail.com", "miri421", brd3);
+User user3 = new User("Kamal", "Eliyev", "mirtalibemirli498@gmail.com", "kamal421", brd3);
 User user4 = new User("Yagmur", "Novruz", "mirtalibemirli498@gmail.com", "ril421", brd4);
 
+Post PP = new Post(" ", "");
 Post p1 = new Post("Formula1", admin1.Name);
 Post p2 = new Post("Around city", admin2.Name);
 Post p3 = new Post("in nature with my pet", admin3.Name);
@@ -114,9 +117,9 @@ db1.users.Add(user1);
 db1.users.Add(user2);
 db1.users.Add(user3);
 db1.users.Add(user4);
-db1.posts.Add(p1);  
-db1.posts.Add(p2);  
-db1.posts.Add(p3);  
+db1.posts.Add(p1);
+db1.posts.Add(p2);
+db1.posts.Add(p3);
 
 
 
@@ -192,7 +195,7 @@ while (true)
         {
             while (true)
             {
-               
+
                 #region login
 
                 Console.Clear();
@@ -261,258 +264,302 @@ while (true)
                     if (select2 == 1) //bu adminin edmeyidi
                     {
 
-                     /*   #region scentering
-                        while (true)
+                        #region scentering
+
+                        try
                         {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write("Gmail :");
+                            string gm = Console.ReadLine();
 
-                            try
-                            {
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.Write("Gmail :");
-                                string gm = Console.ReadLine();
-
-                                Console.Write("Password :");
-                                string pw = Console.ReadLine();
-
-                                Console.ForegroundColor = ConsoleColor.White;
-
-
-                                if (gm == admin1.Mail || gm == admin2.Mail || gm == admin3.Mail)
-                                {
-                                    if (pw == admin1.Password || pw == admin2.Password || pw == admin3.Password)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Magenta;
-
-
-                                        throw new Exception("Wrong password ");
-                                        Console.ForegroundColor = ConsoleColor.White;
-                                    }
-                                }
-                                else
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-
-                                    throw new Exception("Wrong gmail ");
-                                    Console.ForegroundColor = ConsoleColor.White;
-
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.Message);
-
-                            }
-                        }
-                        #endregion
-*/
-
-                        while (true)
-                        {
-
-                            #region menuadmin
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(fon5);
+                            Console.Write("Password :");
+                            string pw = Console.ReadLine();
 
                             Console.ForegroundColor = ConsoleColor.White;
 
-                            if (select4 == 1)
+
+                            if (gm == admin1.Mail || gm == admin2.Mail || gm == admin3.Mail)
                             {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(menuadmin[0]);
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.WriteLine(menuadmin[1]);
-                                Console.WriteLine(menuadmin[2]);
-                                Console.WriteLine(menuadmin[3]);
-                                Console.WriteLine(menuadmin[4]);
-
-                            }
-                            else if (select4 == 2)
-                            {
-                                Console.WriteLine(menuadmin[0]);
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(menuadmin[1]);
-                                Console.ForegroundColor = ConsoleColor.White;
-
-                                Console.WriteLine(menuadmin[2]);
-                                Console.WriteLine(menuadmin[3]);
-                                Console.WriteLine(menuadmin[4]);
-
-
-                            }
-
-                            else if (select4 == 3)
-                            {
-                                Console.WriteLine(menuadmin[0]);
-                                Console.WriteLine(menuadmin[1]);
-                                Console.ForegroundColor = ConsoleColor.Green;
-
-                                Console.WriteLine(menuadmin[2]);
-                                Console.ForegroundColor = ConsoleColor.White;
-
-                                Console.WriteLine(menuadmin[3]);
-                                Console.WriteLine(menuadmin[4]);
-
-
-                            }
-                            else if (select4 == 4)
-                            {
-                                Console.WriteLine(menuadmin[0]);
-                                Console.WriteLine(menuadmin[1]);
-
-                                Console.WriteLine(menuadmin[2]);
-                                Console.ForegroundColor = ConsoleColor.Green;
-
-                                Console.WriteLine(menuadmin[3]);
-
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.WriteLine(menuadmin[4]);
-
-
-                            }
-                            else if (select4 == 5)
-                            {
-                                Console.WriteLine(menuadmin[0]);
-                                Console.WriteLine(menuadmin[1]);
-
-                                Console.WriteLine(menuadmin[2]);
-
-                                Console.WriteLine(menuadmin[3]);
-                                Console.ForegroundColor = ConsoleColor.Green;
-
-                                Console.WriteLine(menuadmin[4]);
-
-                                Console.ForegroundColor = ConsoleColor.White;
-
-
-                            }
-
-
-
-                            ConsoleKeyInfo key3 = Console.ReadKey();
-
-
-                            if (key3.Key == ConsoleKey.UpArrow)
-                            {
-                                if (select4 == 1) select4 = 5;
-                                else select4 -= 1;
-
-                            }
-
-                            else if (key3.Key == ConsoleKey.DownArrow)
-                            {
-                                if (select4 == 5) select4 = 1;
-                                else select4 += 1;
-
-                            }
-
-                            #endregion
-
-
-                            //burda baslayr isleemler
-
-                            if (key3.Key == ConsoleKey.Enter)
-                            {
-                                Console.Clear();
-                                if (select4 == 1)
+                                if (pw == admin1.Password || pw == admin2.Password || pw == admin3.Password)
                                 {
-                                    Console.WriteLine();
-                                    Console.WriteLine("Please enter posts content");
-                                    string cnt = Console.ReadLine();
-                                    
-                                    Console.WriteLine("Please enter name");
-                                    string name = Console.ReadLine();
-
-                                    Post p9 = new Post(cnt,name);   
-
-                                    db1.posts.Add(p9);
-
-                                }
-                               else if (select4 == 2)
-                                {
-                                    db1.showusers();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine("Please enter Esc for returning");
-                                    ConsoleKeyInfo k2 = Console.ReadKey(true);
-
-                                    if (k2.Key == ConsoleKey.Escape)
+                                    while (true)
                                     {
-                                        break;
-                                    }
-                                   
-                                }
-                             else   if (select4 == 3)
-                                {
-                                    //yaz
-                                    try
-                                    {
-                                        Console.WriteLine();
-                                        Console.ForegroundColor = ConsoleColor.Cyan;
-                                        Console.WriteLine("Here are all the posts:");
-                                        Console.WriteLine();
-                                        Console.Write("Enter the ID of the post you want to remove: ");
-                                        string? idguid = Console.ReadLine();
 
-                                        if (int.TryParse(idguid, out int id1))
+                                        #region menuadmin
+                                        Console.Clear();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(fon5);
+
+                                        Console.ForegroundColor = ConsoleColor.White;
+
+                                        if (select4 == 1)
                                         {
-                                            for (int i = 0; i < db1.posts.Count; i++)
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine(menuadmin[1]);
+                                            Console.WriteLine(menuadmin[2]);
+                                            Console.WriteLine(menuadmin[3]);
+                                            Console.WriteLine(menuadmin[4]);
+                                            Console.WriteLine(menuadmin[5]);
+
+                                        }
+                                        else if (select4 == 2)
+                                        {
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(menuadmin[1]);
+                                            Console.ForegroundColor = ConsoleColor.White;
+
+                                            Console.WriteLine(menuadmin[2]);
+                                            Console.WriteLine(menuadmin[3]);
+                                            Console.WriteLine(menuadmin[4]);
+                                            Console.WriteLine(menuadmin[5]);
+
+
+                                        }
+
+                                        else if (select4 == 3)
+                                        {
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.WriteLine(menuadmin[1]);
+                                            Console.ForegroundColor = ConsoleColor.Green;
+
+                                            Console.WriteLine(menuadmin[2]);
+                                            Console.ForegroundColor = ConsoleColor.White;
+
+                                            Console.WriteLine(menuadmin[3]);
+                                            Console.WriteLine(menuadmin[4]);
+                                            Console.WriteLine(menuadmin[5]);
+
+
+                                        }
+                                        else if (select4 == 4)
+                                        {
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.WriteLine(menuadmin[1]);
+
+                                            Console.WriteLine(menuadmin[2]);
+                                            Console.ForegroundColor = ConsoleColor.Green;
+
+                                            Console.WriteLine(menuadmin[3]);
+
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine(menuadmin[4]);
+                                            Console.WriteLine(menuadmin[5]);
+
+
+                                        }
+                                        else if (select4 == 5)
+                                        {
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.WriteLine(menuadmin[1]);
+
+                                            Console.WriteLine(menuadmin[2]);
+
+                                            Console.WriteLine(menuadmin[3]);
+                                            Console.ForegroundColor = ConsoleColor.Green;
+
+                                            Console.WriteLine(menuadmin[4]);
+
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine(menuadmin[5]);
+
+
+                                        }
+
+                                        else if (select4 == 6)
+                                        {
+                                            Console.WriteLine(menuadmin[0]);
+                                            Console.WriteLine(menuadmin[1]);
+
+                                            Console.WriteLine(menuadmin[2]);
+
+                                            Console.WriteLine(menuadmin[3]);
+
+                                            Console.WriteLine(menuadmin[4]);
+                                            Console.ForegroundColor = ConsoleColor.Green;
+
+                                            Console.WriteLine(menuadmin[5]);
+                                            Console.ForegroundColor = ConsoleColor.White;
+
+                                        }
+
+                                        ConsoleKeyInfo key3 = Console.ReadKey();
+
+
+                                        if (key3.Key == ConsoleKey.UpArrow)
+                                        {
+                                            if (select4 == 1) select4 = 6;
+                                            else select4 -= 1;
+
+                                        }
+
+                                        else if (key3.Key == ConsoleKey.DownArrow)
+                                        {
+                                            if (select4 == 6) select4 = 1;
+                                            else select4 += 1;
+
+                                        }
+
+                                        #endregion
+
+
+                                        //burda baslayr isleemler
+
+                                        if (key3.Key == ConsoleKey.Enter)
+                                        {
+                                            Console.Clear();
+                                            if (select4 == 1)
                                             {
-                                                if (db1.posts[i].randomid == id1)
+                                                Console.WriteLine();
+                                                Console.WriteLine("Please enter posts content");
+                                                string cnt = Console.ReadLine();
+
+                                                Console.WriteLine("Please enter name");
+                                                string name = Console.ReadLine();
+
+                                                Post p9 = new Post(cnt, name);
+
+                                                db1.posts.Add(p9);
+
+                                            }
+                                            else if (select4 == 2)
+                                            {
+                                                db1.showusers();
+                                                Console.WriteLine();
+                                                Console.WriteLine();
+                                                Console.WriteLine("Please enter Esc for returning");
+                                                ConsoleKeyInfo k2 = Console.ReadKey(true);
+
+                                                if (k2.Key == ConsoleKey.Escape)
                                                 {
-                                                    db1.posts.RemoveAt(i);
+                                                    break;
+                                                }
+
+                                            }
+                                            else if (select4 == 3)
+                                            {
+                                                //yaz
+                                                try
+                                                {
+                                                    Console.WriteLine();
+                                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                                    Console.WriteLine("Here are all the posts:");
+                                                    Console.WriteLine();
+                                                    Console.Write("Enter the ID of the post you want to remove: ");
+                                                    string? idguid = Console.ReadLine();
+
+                                                    if (int.TryParse(idguid, out int id1))
+                                                    {
+                                                        if (db1.posts.Count == 1)
+                                                        {
+                                                            db1.posts.Clear();
+
+                                                        }
+                                                        else
+                                                        {
+                                                            for (int i = 0; i < db1.posts.Count; i++)
+                                                            {
+                                                                if (db1.posts[i].randomid == id1)
+                                                                {
+                                                                    db1.posts.RemoveAt(i);
+                                                                }
+                                                            }
+                                                        }
+
+                                                        Console.Write("");
+                                                        Console.WriteLine("Please press Enter to return to the menu ");
+                                                        ConsoleKeyInfo keyguid = Console.ReadKey(true);
+                                                    }
+
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Console.WriteLine(ex.Message);
+
+                                                }
+
+
+
+                                                Console.ForegroundColor = ConsoleColor.White;
+
+                                            }
+
+                                            else if (select4 == 5)
+                                            {
+                                                db1.showallposts();
+                                                Console.WriteLine();
+                                                Console.WriteLine();
+                                                Console.WriteLine("Please enter Esc for returning");
+                                                ConsoleKeyInfo k2 = Console.ReadKey(true);
+
+                                                if (k2.Key == ConsoleKey.Escape)
+                                                {
+                                                    break;
+                                                }
+                                                //showposts
+                                            }
+                                            else if (select4 == 4)
+                                            {
+
+                                                break;
+                                            }
+                                            else if (select4 == 6)
+                                            {
+                                                db1.showallnotify();
+                                                Console.WriteLine();
+                                                Console.WriteLine();
+                                                Console.WriteLine("Please enter Esc for returning");
+                                                ConsoleKeyInfo k2 = Console.ReadKey(true);
+
+                                                if (k2.Key == ConsoleKey.Escape)
+                                                {
+                                                    break;
                                                 }
                                             }
 
-                                            Console.Write("");
-                                            Console.WriteLine("Please press Enter to return to the menu ");
-                                            ConsoleKeyInfo keyguid = Console.ReadKey(true);
+
+
+
+
+
                                         }
 
-                                    }
-                                    catch (Exception ex )
-                                    {
-                                        Console.WriteLine(ex.Message);
+
+
+
 
                                     }
 
-                                    
 
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
+
+
+                                    throw new Exception("Wrong password ");
                                     Console.ForegroundColor = ConsoleColor.White;
-
-                                }
-
-                                else if (select4 == 5)
-                                {
-                                    db1.showallposts();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine("Please enter Esc for returning");
-                                    ConsoleKeyInfo k2 = Console.ReadKey(true);
-
-                                    if (k2.Key == ConsoleKey.Escape)
-                                    {
-                                        break;
-                                    }
-                                    //showposts
-                                }
-                                else  if (select4 == 4)
-                                {
-
-                                    break;
                                 }
                             }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkCyan;
 
 
+                                throw new Exception("Wrong gmail ");
+                                Console.ForegroundColor = ConsoleColor.White;
 
-
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
 
                         }
+                        #endregion
+
 
 
 
@@ -522,7 +569,89 @@ while (true)
 
                     else if (select2 == 2)
                     {
-                        //user girisi
+
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Username :");
+                        string gm = Console.ReadLine();
+                        try
+                        {
+
+
+                            Console.Write("Password :");
+                            string pw = Console.ReadLine();
+
+                            Console.ForegroundColor = ConsoleColor.White;
+
+
+                            if (gm == user1.Name || gm == user2.Name || gm == user3.Name || gm == user4.Name)
+                            {
+                                if (pw == user1.Password || pw == user2.Password || pw == user3.Password || pw == user4.Password)
+                                {
+
+
+
+                                    Console.Clear();
+                                    db1.showallposts();
+
+                                    Console.WriteLine(@"
+If you want Like post press L key and enter ID
+For go back  press enter key ");
+                                    ConsoleKeyInfo keyu = Console.ReadKey(true);
+                                    if (keyu.Key == ConsoleKey.L)
+                                    {
+                                        Console.Write("Enter id =>");
+
+                                        int idd = Convert.ToInt32(Console.ReadLine());
+                                        foreach (var item in db1.posts)
+                                        {
+                                            if (item.randomid == idd)
+                                            {
+                                                DateTime tm = DateTime.Now;
+                                                notificl n1 = new notificl(tm, gm);
+
+                                                db1.notificls.Add(n1);
+                                                item.Like();
+
+                                            }
+                                        }
+                                    }
+                                    else if (keyu.Key == ConsoleKey.Enter)
+                                    {
+                                        break;
+                                    }
+
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
+
+
+                                    throw new Exception("Wrong password ");
+
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+
+                                throw new Exception("Wrong gmail ");
+                                Console.ForegroundColor = ConsoleColor.White;
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            Thread.Sleep(1500);
+
+                        }
+
+
+
+
 
                     }
 
@@ -650,8 +779,8 @@ while (true)
 
         }
         #endregion
-    
-    
+
+
     }
 
 }

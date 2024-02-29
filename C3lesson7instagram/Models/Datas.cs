@@ -16,6 +16,7 @@ public partial class Databasee
     public partial void showadmins();
     public partial void showusers();
     public partial void showallposts();
+    public partial void showallnotify();
 
      
 

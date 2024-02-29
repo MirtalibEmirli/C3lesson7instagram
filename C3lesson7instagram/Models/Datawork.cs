@@ -30,6 +30,13 @@ public partial class Databasee
         }
     }
 
+    public partial void showallnotify()
+    {
+        foreach (var item in notificls)
+        {
+            item.show();
+        }
+    }
 
 
 }
