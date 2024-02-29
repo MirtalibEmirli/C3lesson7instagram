@@ -2,6 +2,8 @@
 using C3lesson7instagram.admn;
 using System.Net;
 using System.Net.Mail;
+using Possts.nets;
+using System.Data;
 /*using System.Drawing;
 using Notfcs.nets;
 using Possts.nets;
@@ -76,7 +78,8 @@ string[] menuadmin = {
                    "\t\t\t\t[1] => Add Post",
                    "\t\t\t\t[2] => Show Users",
                    "\t\t\t\t[3] => Delete Post",
-                   "\t\t\t\t[4] => Exit"
+                   "\t\t\t\t[4] => Exit",
+                   "\t\t\t\t[5] => Show all posts"
 };
 
 #endregion
@@ -96,7 +99,13 @@ DateTime brd4 = new DateTime(2004, 11, 13);
 User user1 = new User("Adil", "Pashayev", "mirtalibemirli498@gmail.com", "miri21", brd1);
 User user2 = new User("Mirtalib", "Emirli", "mirtalibemirli498@gmail.com", "miri321", brd2);
 User user3 = new User("Kamal", "Eliyev", "mirtalibemirli498@gmail.com", "miri421", brd3);
-User user4 = new User("Rail", "Agayevh", "mirtalibemirli498@gmail.com", "ril421", brd4);
+User user4 = new User("Yagmur", "Novruz", "mirtalibemirli498@gmail.com", "ril421", brd4);
+
+Post p1 = new Post("Formula1", admin1.Name);
+Post p2 = new Post("Around city", admin2.Name);
+Post p3 = new Post("in nature with my pet", admin3.Name);
+
+
 Databasee db1 = new Databasee();
 db1.adminss.Add(admin1);
 db1.adminss.Add(admin2);
@@ -105,22 +114,32 @@ db1.users.Add(user1);
 db1.users.Add(user2);
 db1.users.Add(user3);
 db1.users.Add(user4);
+db1.posts.Add(p1);  
+db1.posts.Add(p2);  
+db1.posts.Add(p3);  
+
+
+
 /*
-db1.showusers();
+
+db1.showallposts();
 
 Thread.Sleep(555555);*/
 #endregion
+
+
 while (true)
 {
 
     #region firstentering
     Console.Clear();
 
-    Console.ForegroundColor = ConsoleColor.Green;
+    Console.ForegroundColor = ConsoleColor.Magenta;
 
     Console.WriteLine(fon);
     Console.WriteLine(fonq);
     Console.ForegroundColor = ConsoleColor.White;
+    Console.BackgroundColor = ConsoleColor.Black;
 
 
     if (select == 1)
@@ -168,11 +187,12 @@ while (true)
 
     if (key.Key == ConsoleKey.Enter)
     {
-
+        //logining
         if (select == 1)
         {
             while (true)
             {
+               
                 #region login
 
                 Console.Clear();
@@ -241,7 +261,7 @@ while (true)
                     if (select2 == 1) //bu adminin edmeyidi
                     {
 
-                        #region scentering
+                     /*   #region scentering
                         while (true)
                         {
 
@@ -289,7 +309,7 @@ while (true)
                             }
                         }
                         #endregion
-
+*/
 
                         while (true)
                         {
@@ -309,6 +329,7 @@ while (true)
                                 Console.WriteLine(menuadmin[1]);
                                 Console.WriteLine(menuadmin[2]);
                                 Console.WriteLine(menuadmin[3]);
+                                Console.WriteLine(menuadmin[4]);
 
                             }
                             else if (select4 == 2)
@@ -320,6 +341,7 @@ while (true)
 
                                 Console.WriteLine(menuadmin[2]);
                                 Console.WriteLine(menuadmin[3]);
+                                Console.WriteLine(menuadmin[4]);
 
 
                             }
@@ -334,6 +356,7 @@ while (true)
                                 Console.ForegroundColor = ConsoleColor.White;
 
                                 Console.WriteLine(menuadmin[3]);
+                                Console.WriteLine(menuadmin[4]);
 
 
                             }
@@ -348,6 +371,23 @@ while (true)
                                 Console.WriteLine(menuadmin[3]);
 
                                 Console.ForegroundColor = ConsoleColor.White;
+                                Console.WriteLine(menuadmin[4]);
+
+
+                            }
+                            else if (select4 == 5)
+                            {
+                                Console.WriteLine(menuadmin[0]);
+                                Console.WriteLine(menuadmin[1]);
+
+                                Console.WriteLine(menuadmin[2]);
+
+                                Console.WriteLine(menuadmin[3]);
+                                Console.ForegroundColor = ConsoleColor.Green;
+
+                                Console.WriteLine(menuadmin[4]);
+
+                                Console.ForegroundColor = ConsoleColor.White;
 
 
                             }
@@ -359,14 +399,14 @@ while (true)
 
                             if (key3.Key == ConsoleKey.UpArrow)
                             {
-                                if (select4 == 1) select4 = 4;
+                                if (select4 == 1) select4 = 5;
                                 else select4 -= 1;
 
                             }
 
                             else if (key3.Key == ConsoleKey.DownArrow)
                             {
-                                if (select4 == 4) select4 = 1;
+                                if (select4 == 5) select4 = 1;
                                 else select4 += 1;
 
                             }
@@ -381,13 +421,19 @@ while (true)
                                 Console.Clear();
                                 if (select4 == 1)
                                 {
-                                    //yaz
+                                    Console.WriteLine();
+                                    Console.WriteLine("Please enter posts content");
+                                    string cnt = Console.ReadLine();
+                                    
+                                    Console.WriteLine("Please enter name");
+                                    string name = Console.ReadLine();
 
-                                    Console.WriteLine(menuadmin[0]);
-                                    Thread.Sleep(1000);
+                                    Post p9 = new Post(cnt,name);   
+
+                                    db1.posts.Add(p9);
 
                                 }
-                                if (select4 == 2)
+                               else if (select4 == 2)
                                 {
                                     db1.showusers();
                                     Console.WriteLine();
@@ -399,15 +445,63 @@ while (true)
                                     {
                                         break;
                                     }
+                                   
                                 }
-                                if (select4 == 3)
+                             else   if (select4 == 3)
                                 {
                                     //yaz
-                                    Console.WriteLine(menuadmin[2]);
-                                    Thread.Sleep(1000);
+                                    try
+                                    {
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.Cyan;
+                                        Console.WriteLine("Here are all the posts:");
+                                        Console.WriteLine();
+                                        Console.Write("Enter the ID of the post you want to remove: ");
+                                        string? idguid = Console.ReadLine();
+
+                                        if (int.TryParse(idguid, out int id1))
+                                        {
+                                            for (int i = 0; i < db1.posts.Count; i++)
+                                            {
+                                                if (db1.posts[i].randomid == id1)
+                                                {
+                                                    db1.posts.RemoveAt(i);
+                                                }
+                                            }
+
+                                            Console.Write("");
+                                            Console.WriteLine("Please press Enter to return to the menu ");
+                                            ConsoleKeyInfo keyguid = Console.ReadKey(true);
+                                        }
+
+                                    }
+                                    catch (Exception ex )
+                                    {
+                                        Console.WriteLine(ex.Message);
+
+                                    }
+
+                                    
+
+                                    Console.ForegroundColor = ConsoleColor.White;
 
                                 }
-                                if (select4 == 4)
+
+                                else if (select4 == 5)
+                                {
+                                    db1.showallposts();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Console.WriteLine("Please enter Esc for returning");
+                                    ConsoleKeyInfo k2 = Console.ReadKey(true);
+
+                                    if (k2.Key == ConsoleKey.Escape)
+                                    {
+                                        break;
+                                    }
+                                    //showposts
+                                }
+                                else  if (select4 == 4)
                                 {
 
                                     break;
@@ -445,7 +539,7 @@ while (true)
         }
 
 
-        //bu register hissesidi
+        // register part
         #region Register
         else if (select == 2)
         {
@@ -530,7 +624,7 @@ while (true)
                                 Console.WriteLine("You are registered sucsessfully.");
                             else
                             {
-                                Console.WriteLine("You don't registered sucsessfully.");
+                                Console.WriteLine("You don't registered .");
                             }
                         }
                         catch (Exception ex)
@@ -542,7 +636,7 @@ while (true)
 
 
 
-                Thread.Sleep(1500);
+                Thread.Sleep(2500);
 
                 Console.ForegroundColor = ConsoleColor.White;
 
@@ -556,6 +650,8 @@ while (true)
 
         }
         #endregion
+    
+    
     }
 
 }

@@ -24,7 +24,10 @@ public partial class Databasee
     }
     public partial void showallposts()
     {
-
+        foreach (var item in posts)
+        {
+            item.show();
+        }
     }
 
 
