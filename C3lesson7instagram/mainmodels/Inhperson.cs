@@ -3,7 +3,8 @@ namespace C3lesson7instagram.mainmodels;
 
 public abstract class Person
 {
-    protected string _name; 
+    public int intdsa { get; set; }
+    protected  string _name; 
     protected string _surname; 
     protected string _mail; 
     protected string _password;

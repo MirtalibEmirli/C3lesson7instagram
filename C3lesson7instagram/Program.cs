@@ -5,6 +5,7 @@ using System.Net.Mail;
 using Possts.nets;
 using System.Data;
 using Notfcs.nets;
+using System.Collections;
 /*using System.Drawing;
 using Notfcs.nets;
 using Possts.nets;
@@ -65,24 +66,10 @@ string[] menu1 = {
                    "\t\t\t\t[1] => Login",
                   "\t\t\t\t[2] => Register" };
 int select = 1; Console.WriteLine();
-int select2 = 1;
+int select2 = 0;
 int select3 = 1;
-int select4 = 1;
+int select4 = 0;
 
-string[] menu2 = {
-                   "\t\t\t\t[1] => Admin",
-                   "\t\t\t\t[2] => User",
-                  "\t\t\t\t[3] => Exit" };
-
-
-string[] menuadmin = {
-                   "\t\t\t\t[1] => Add Post",
-                   "\t\t\t\t[2] => Show Users",
-                   "\t\t\t\t[3] => Delete Post",
-                   "\t\t\t\t[4] => Exit",
-                   "\t\t\t\t[5] => Show all posts",
-                   "\t\t\t\t[6] => Notifilications"
-};
 
 #endregion
 
@@ -106,7 +93,6 @@ User user4 = new User("Yagmur", "Novruz", "mirtalibemirli498@gmail.com", "ril421
 Post p1 = new Post("Formula1", admin1.Name);
 Post p2 = new Post("Around city", admin2.Name);
 Post p3 = new Post("in nature with my pet", admin3.Name);
-
 
 Databasee db1 = new Databasee();
 db1.adminss.Add(admin1);
@@ -203,36 +189,18 @@ while (true)
                 Console.WriteLine(fon3);
                 Console.ForegroundColor = ConsoleColor.White;
 
-                if (select2 == 1)
+                if (select2 == 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(menu2[0]);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(menu2[1]);
-                    Console.WriteLine(menu2[2]);
-
+                    showmenu2(select2);
                 }
+                else if (select2 == 1)
+                {
+                    showmenu2(select2);
+                }
+
                 else if (select2 == 2)
                 {
-                    Console.WriteLine(menu2[0]);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(menu2[1]);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(menu2[2]);
-
-
-                }
-
-                else if (select2 == 3)
-                {
-                    Console.WriteLine(menu2[0]);
-                    Console.WriteLine(menu2[1]);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(menu2[2]);
-
-                    Console.ForegroundColor = ConsoleColor.White;
-
-
+                    showmenu2(select2);
                 }
 
 
@@ -241,14 +209,14 @@ while (true)
 
                 if (key2.Key == ConsoleKey.UpArrow)
                 {
-                    if (select2 == 1) select2 = 3;
+                    if (select2 == 0) select2 = 2;
                     else select2 -= 1;
 
                 }
 
                 else if (key2.Key == ConsoleKey.DownArrow)
                 {
-                    if (select2 == 3) select2 = 1;
+                    if (select2 == 2) select2 = 0;
                     else select2 += 1;
 
                 }
@@ -260,7 +228,7 @@ while (true)
                 {
 
 
-                    if (select2 == 1) //bu adminin edmeyidi
+                    if (select2 == 0) //bu adminin edmeyidi
                     {
 
                         #region scentering
@@ -291,96 +259,40 @@ while (true)
 
                                         Console.ForegroundColor = ConsoleColor.White;
 
-                                        if (select4 == 1)
+                                        if (select4 == 0)
                                         {
-                                            Console.ForegroundColor = ConsoleColor.Green;
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            Console.WriteLine(menuadmin[1]);
-                                            Console.WriteLine(menuadmin[2]);
-                                            Console.WriteLine(menuadmin[3]);
-                                            Console.WriteLine(menuadmin[4]);
-                                            Console.WriteLine(menuadmin[5]);
+                                            showmenu3(select4);
 
                                         }
+                                        else if (select4 == 1)
+                                        {
+                                            showmenu3(select4);
+
+
+
+                                        }
+
                                         else if (select4 == 2)
                                         {
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.ForegroundColor = ConsoleColor.Green;
-                                            Console.WriteLine(menuadmin[1]);
-                                            Console.ForegroundColor = ConsoleColor.White;
+                                            showmenu3(select4);
 
-                                            Console.WriteLine(menuadmin[2]);
-                                            Console.WriteLine(menuadmin[3]);
-                                            Console.WriteLine(menuadmin[4]);
-                                            Console.WriteLine(menuadmin[5]);
 
 
                                         }
-
                                         else if (select4 == 3)
                                         {
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.WriteLine(menuadmin[1]);
-                                            Console.ForegroundColor = ConsoleColor.Green;
-
-                                            Console.WriteLine(menuadmin[2]);
-                                            Console.ForegroundColor = ConsoleColor.White;
-
-                                            Console.WriteLine(menuadmin[3]);
-                                            Console.WriteLine(menuadmin[4]);
-                                            Console.WriteLine(menuadmin[5]);
-
+                                            showmenu3(select4);
 
                                         }
                                         else if (select4 == 4)
                                         {
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.WriteLine(menuadmin[1]);
-
-                                            Console.WriteLine(menuadmin[2]);
-                                            Console.ForegroundColor = ConsoleColor.Green;
-
-                                            Console.WriteLine(menuadmin[3]);
-
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            Console.WriteLine(menuadmin[4]);
-                                            Console.WriteLine(menuadmin[5]);
-
+                                            showmenu3(select4);
 
                                         }
+
                                         else if (select4 == 5)
                                         {
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.WriteLine(menuadmin[1]);
-
-                                            Console.WriteLine(menuadmin[2]);
-
-                                            Console.WriteLine(menuadmin[3]);
-                                            Console.ForegroundColor = ConsoleColor.Green;
-
-                                            Console.WriteLine(menuadmin[4]);
-
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            Console.WriteLine(menuadmin[5]);
-
-
-                                        }
-
-                                        else if (select4 == 6)
-                                        {
-                                            Console.WriteLine(menuadmin[0]);
-                                            Console.WriteLine(menuadmin[1]);
-
-                                            Console.WriteLine(menuadmin[2]);
-
-                                            Console.WriteLine(menuadmin[3]);
-
-                                            Console.WriteLine(menuadmin[4]);
-                                            Console.ForegroundColor = ConsoleColor.Green;
-
-                                            Console.WriteLine(menuadmin[5]);
-                                            Console.ForegroundColor = ConsoleColor.White;
+                                            showmenu3(select4);
 
                                         }
 
@@ -389,14 +301,14 @@ while (true)
 
                                         if (key3.Key == ConsoleKey.UpArrow)
                                         {
-                                            if (select4 == 1) select4 = 6;
+                                            if (select4 == 0) select4 = 5;
                                             else select4 -= 1;
 
                                         }
 
                                         else if (key3.Key == ConsoleKey.DownArrow)
                                         {
-                                            if (select4 == 6) select4 = 1;
+                                            if (select4 == 5) select4 = 0;
                                             else select4 += 1;
 
                                         }
@@ -409,7 +321,7 @@ while (true)
                                         if (key3.Key == ConsoleKey.Enter)
                                         {
                                             Console.Clear();
-                                            if (select4 == 1)
+                                            if (select4 == 0)
                                             {
                                                 Console.WriteLine();
                                                 Console.WriteLine("Please enter posts content");
@@ -423,7 +335,7 @@ while (true)
                                                 db1.posts.Add(p9);
 
                                             }
-                                            else if (select4 == 2)
+                                            else if (select4 == 1)
                                             {
                                                 db1.showusers();
                                                 Console.WriteLine();
@@ -437,40 +349,41 @@ while (true)
                                                 }
 
                                             }
-                                            else if (select4 == 3)
+                                            else if (select4 == 2)
                                             {
                                                 //yaz
                                                 try
                                                 {
                                                     Console.WriteLine();
                                                     Console.ForegroundColor = ConsoleColor.Cyan;
-                                                    Console.WriteLine("Here are all the posts:");
+                                                    Console.WriteLine("Here are all the posts:"); db1.showallposts();
+
                                                     Console.WriteLine();
                                                     Console.Write("Enter the ID of the post you want to remove: ");
                                                     Guid? idguid = Guid.Parse(Console.ReadLine());
-                                                    
 
-                                                   
-                                                        if (db1.posts.Count == 1)
-                                                        {
-                                                            db1.posts.Clear();
 
-                                                        }
-                                                        else
+
+                                                    if (db1.posts.Count == 1)
+                                                    {
+                                                        db1.posts.Clear();
+
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int i = 0; i < db1.posts.Count; i++)
                                                         {
-                                                            for (int i = 0; i < db1.posts.Count; i++)
+                                                            if (db1.posts[i].randomid == idguid)
                                                             {
-                                                                if (db1.posts[i].randomid == idguid)
-                                                                {
-                                                                    db1.posts.RemoveAt(i);
-                                                                }
+                                                                db1.posts.RemoveAt(i);
                                                             }
                                                         }
+                                                    }
 
-                                                        Console.Write("");
-                                                        Console.WriteLine("Please press Enter to return to the menu ");
-                                                        ConsoleKeyInfo keyguid = Console.ReadKey(true);
-                                                    
+                                                    Console.Write("");
+                                                    Console.WriteLine("Please press Enter to return to the menu ");
+                                                    ConsoleKeyInfo keyguid = Console.ReadKey(true);
+
 
                                                 }
                                                 catch (Exception ex)
@@ -485,7 +398,7 @@ while (true)
 
                                             }
 
-                                            else if (select4 == 5)
+                                            else if (select4 == 4)
                                             {
                                                 db1.showallposts();
                                                 Console.WriteLine();
@@ -499,12 +412,7 @@ while (true)
                                                 }
                                                 //showposts
                                             }
-                                            else if (select4 == 4)
-                                            {
-
-                                                break;
-                                            }
-                                            else if (select4 == 6)
+                                            else if (select4 == 3)
                                             {
                                                 db1.showallnotify();
                                                 Console.WriteLine();
@@ -516,80 +424,54 @@ while (true)
                                                 {
                                                     break;
                                                 }
+
                                             }
-
-
-
-
-
+                                            else if (select4 == 5)
+                                            {
+                                                break;
+                                                
+                                            }
 
                                         }
 
-
-
-
-
                                     }
-
 
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Magenta;
-
-
                                     throw new Exception("Wrong password ");
-                                    Console.ForegroundColor = ConsoleColor.White;
                                 }
                             }
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-
                                 throw new Exception("Wrong gmail ");
-                                Console.ForegroundColor = ConsoleColor.White;
-
                             }
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
-
+                            Thread.Sleep(1500);
                         }
                         #endregion
 
-
-
-
-
                     }///
 
-
-                    else if (select2 == 2)
+                    else if (select2 == 1)
                     {
-
-
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write("Username :");
                         string gm = Console.ReadLine();
                         try
                         {
-
-
                             Console.Write("Password :");
                             string pw = Console.ReadLine();
-
                             Console.ForegroundColor = ConsoleColor.White;
-
-
                             if (gm == user1.Name || gm == user2.Name || gm == user3.Name || gm == user4.Name)
                             {
                                 if (pw == user1.Password || pw == user2.Password || pw == user3.Password || pw == user4.Password)
                                 {
-
-
-
                                     Console.Clear();
                                     db1.showallposts();
 
@@ -611,7 +493,6 @@ For go back  press enter key ");
 
                                                 db1.notificls.Add(n1);
                                                 item.Like();
-
                                             }
                                         }
                                     }
@@ -619,50 +500,32 @@ For go back  press enter key ");
                                     {
                                         break;
                                     }
-
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Magenta;
-
-
                                     throw new Exception("Wrong password ");
 
-                                    Console.ForegroundColor = ConsoleColor.White;
                                 }
                             }
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-
                                 throw new Exception("Wrong gmail ");
-                                Console.ForegroundColor = ConsoleColor.White;
-
                             }
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
                             Thread.Sleep(1500);
-
                         }
 
-
-
-
-
                     }
-
-                    else if (select2 == 3)
+                    else if (select2 == 2)
                     {
                         break;
-
                     }
-
-
                 }
-
             }
         }
 
@@ -684,6 +547,7 @@ For go back  press enter key ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("name =>");
                 name = Console.ReadLine();
+
                 Console.WriteLine("surname =>");
                 surname = Console.ReadLine();
 
@@ -696,6 +560,7 @@ For go back  press enter key ");
                 Console.WriteLine("~~~~~~~~~~Birth details~~~~~~~~~~  ");
                 Console.WriteLine();
                 Console.WriteLine("Birth day =>");
+
                 day = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Birth month =>");
@@ -707,12 +572,9 @@ For go back  press enter key ");
                 Console.ForegroundColor = ConsoleColor.White;
                 DateTime day2 = new DateTime(yr, mon, day);
 
-
                 User newuser = new User(name, surname, mail, password, day2);
                 db1.users.Add(newuser);
                 Console.ForegroundColor = ConsoleColor.Red;
-
-
 
 
                 string senderEmail = "mirtalibemirli498@gmail.com";
@@ -742,7 +604,6 @@ For go back  press enter key ");
                         mailMessage.Body = $"{msg}";
 
 
-
                         try
                         {
                             smtpClient.Send(mailMessage);
@@ -762,8 +623,6 @@ For go back  press enter key ");
                     }
                 }
 
-
-
                 Thread.Sleep(2500);
 
                 Console.ForegroundColor = ConsoleColor.White;
@@ -771,7 +630,6 @@ For go back  press enter key ");
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.Message);
                 Thread.Sleep(3500);
             }
@@ -779,10 +637,68 @@ For go back  press enter key ");
         }
         #endregion
 
+    }
+}
 
+
+void showmenu2(int selecttt)
+{
+    string[] menu2 = {
+                   "\t\t\t\t[1] => Admin",
+                   "\t\t\t\t[2] => User",
+                  "\t\t\t\t[3] => Exit" };
+
+
+    for (int i = 0; i < menu2.Length; i++)
+    {
+        if (i == selecttt)
+        {
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(menu2[i]);
+            Console.ForegroundColor = ConsoleColor.White;
+
+        }
+        else
+        {
+            Console.WriteLine(menu2[i]);
+        }
+    }
+}
+
+
+void showmenu3(int selecttt)
+{
+
+    string[] menuadmin = {
+                   "\t\t\t\t[1] => Add Post",
+                   "\t\t\t\t[2] => Show Users",
+                   "\t\t\t\t[3] => Delete Post",
+                   "\t\t\t\t[4] => Notifilications",
+                   "\t\t\t\t[5] => Show all posts",
+                   "\t\t\t\t[6] => Exit"
+};
+    for (int i = 0; i < menuadmin.Length; i++)
+    {
+        if (i == selecttt)
+        {
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(menuadmin[i]);
+            Console.ForegroundColor = ConsoleColor.White;
+
+        }
+        else
+        {
+            Console.WriteLine(menuadmin[i]);
+        }
     }
 
 }
+
+
+
+
 
 
 
@@ -827,23 +743,6 @@ catch (Exception ex ) when (ex.Message.Contains("S "))
     Console.WriteLine( ex.ToString() ); 
 }
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
