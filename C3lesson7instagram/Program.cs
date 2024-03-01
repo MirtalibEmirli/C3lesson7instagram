@@ -103,7 +103,6 @@ User user2 = new User("Mirtalib", "Emirli", "mirtalibemirli498@gmail.com", "miri
 User user3 = new User("Kamal", "Eliyev", "mirtalibemirli498@gmail.com", "kamal421", brd3);
 User user4 = new User("Yagmur", "Novruz", "mirtalibemirli498@gmail.com", "ril421", brd4);
 
-Post PP = new Post(" ", "");
 Post p1 = new Post("Formula1", admin1.Name);
 Post p2 = new Post("Around city", admin2.Name);
 Post p3 = new Post("in nature with my pet", admin3.Name);
@@ -448,10 +447,10 @@ while (true)
                                                     Console.WriteLine("Here are all the posts:");
                                                     Console.WriteLine();
                                                     Console.Write("Enter the ID of the post you want to remove: ");
-                                                    string? idguid = Console.ReadLine();
+                                                    Guid? idguid = Guid.Parse(Console.ReadLine());
+                                                    
 
-                                                    if (int.TryParse(idguid, out int id1))
-                                                    {
+                                                   
                                                         if (db1.posts.Count == 1)
                                                         {
                                                             db1.posts.Clear();
@@ -461,7 +460,7 @@ while (true)
                                                         {
                                                             for (int i = 0; i < db1.posts.Count; i++)
                                                             {
-                                                                if (db1.posts[i].randomid == id1)
+                                                                if (db1.posts[i].randomid == idguid)
                                                                 {
                                                                     db1.posts.RemoveAt(i);
                                                                 }
@@ -471,7 +470,7 @@ while (true)
                                                         Console.Write("");
                                                         Console.WriteLine("Please press Enter to return to the menu ");
                                                         ConsoleKeyInfo keyguid = Console.ReadKey(true);
-                                                    }
+                                                    
 
                                                 }
                                                 catch (Exception ex)
@@ -602,10 +601,10 @@ For go back  press enter key ");
                                     {
                                         Console.Write("Enter id =>");
 
-                                        int idd = Convert.ToInt32(Console.ReadLine());
+                                        Guid idguid = Guid.Parse(Console.ReadLine());
                                         foreach (var item in db1.posts)
                                         {
-                                            if (item.randomid == idd)
+                                            if (item.randomid == idguid)
                                             {
                                                 DateTime tm = DateTime.Now;
                                                 notificl n1 = new notificl(tm, gm);

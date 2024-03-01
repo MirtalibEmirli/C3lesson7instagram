@@ -5,8 +5,8 @@ using C3lesson7instagram.mainmodels;
 
 public class User:Person
 {
-    public User(string name, string surname, string mail, string password, DateTime day) : base(name, surname, mail, password, day) { }
-    Guid randomguid = Guid.NewGuid();
+    public Guid randomid;
+    public User(string name, string surname, string mail, string password, DateTime day) : base(name, surname, mail, password, day) { randomid = Guid.NewGuid(); }
 
     public override void show()
     {
@@ -22,7 +22,7 @@ $@"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Mail => {Mail}
         PAssword => {Password}
 
-        ID => {randomguid}
+        ID => {randomid}
 
         Entering => {v} 
 

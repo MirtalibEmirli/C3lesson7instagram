@@ -5,13 +5,13 @@ namespace Possts.nets;
 
 public class Post
 {
-    
-  public  int randomid =Random.Shared.Next(0,101);
+
+    public Guid randomid;
 
 
-/*
-    public Guid _id { get; }
-    public string Id { get; }*/
+    /*
+        public Guid _id { get; }
+        public string Id { get; }*/
 
     private int _likeCount;
     public DateTime _creationDateTime = DateTime.Now;
@@ -27,8 +27,8 @@ public class Post
         _likeCount = 0;
         _name = name;
         Content = content;
-       /* _id = Guid.NewGuid();
-        Id = _id.ToString();*/
+        randomid = Guid.NewGuid();
+        
     }
 
     public int LCount { get { return _likeCount; } set { _likeCount = value; } }
